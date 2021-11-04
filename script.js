@@ -15,13 +15,7 @@ function userInput()  {
   //THEN I choose a length of at least 8 characters and no more than 128 characters
   do{
   var length = prompt("Choose from 8 to 128");
-  //check if length input is valid greater than or equal to 8 less than or equal to 128
-  if((length < 8)||(length > 128)){
-    alert("Choose from 8 to 128");
-    userInput();//recursion to call function again until input is correct
-    break;
   //WHEN asked for character types to include in the password
-  }else
   var lowerInput = confirm("Include lowercase?"); //lowercase, uppercase, numeric, and/or special characters
   var upperInput = confirm("Include uppercase?");
   var numbersInput = confirm("Include numbers?");
@@ -35,8 +29,9 @@ function userInput()  {
     numbersInput: numbersInput,
     char: char
   }
-  if((length < 8)||(length > 128))
-    alert("Choose number between 8 and 128");
+    //check if length input is valid greater than or equal to 8 less than or equal to 128
+    if((length < 8)||(length > 128)) 
+    alert("Choose from 8 to 128");
     else if((!numbersInput)&&(!lowerInput)&&(!upperInput)&&(!char))//ask for other inputs
     alert("At least one character type should be selected"); //at least one character type should be selected
     else
@@ -78,13 +73,6 @@ function genPassword() {
     
   }
   console.log(finalPassword); //shows final password in console
-
-
-    for (var i = 0; i < options.length; i++) {
-        finalPassword += combinations[Math.floor(Math.random() * combinations.length)];
-    
-    }
-    console.log(finalPassword);
 
   return finalPassword;
 }
