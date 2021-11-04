@@ -12,10 +12,16 @@ var special = ['@', '%', '+', '/', "'", '!', '#', '$', '^', '?', ':', ',', ')', 
 function userInput()  {
   var isValid = false;
   //loops when input is not valid to get accurate user input
-  do{
   //THEN I choose a length of at least 8 characters and no more than 128 characters
+  do{
   var length = prompt("Choose from 8 to 128");
+  //check if length input is valid greater than or equal to 8 less than or equal to 128
+  if((length < 8)||(length > 128)){
+    alert("Choose from 8 to 128");
+    userInput();//recursion to call function again until input is correct
+    break;
   //WHEN asked for character types to include in the password
+  }else
   var lowerInput = confirm("Include lowercase?"); //lowercase, uppercase, numeric, and/or special characters
   var upperInput = confirm("Include uppercase?");
   var numbersInput = confirm("Include numbers?");
@@ -27,25 +33,25 @@ function userInput()  {
     lowerInput: lowerInput,
     upperInput: upperInput,
     numbersInput: numbersInput,
-    char, char
+    char: char
   }
-  //check if length input is valid greater than or equal to 8 less than or equal to 128
   if((length < 8)||(length > 128))
-    alert("Choose from 8 to 128");
-    else if((!numbersInput)&&(!lowerInput)&&(!upperInput)&&(!char)) //ask for other inputs
+    alert("Choose number between 8 and 128");
+    else if((!numbersInput)&&(!lowerInput)&&(!upperInput)&&(!char))//ask for other inputs
     alert("At least one character type should be selected"); //at least one character type should be selected
     else
     isValid = true;
-  }while(!isValid); //if the input is valid it is returned
+
+    }while(!isValid); //if the input is valid it is returned
   return input;
-};
+}
 
 //function to take inputs and generate the password
 //WHEN all prompts are answered THEN a password is generated that matches the selected criteria
 function genPassword() {
   var options = userInput();
   var combinations = [];
-  var password = "";
+  var finalPassword = "";
 
   if (options.numbersInput) { //if user chose numbers adds numbers
     for (var i of numbers)
@@ -64,14 +70,32 @@ function genPassword() {
       combinations.push(i);
   }
 
-  console.log(combinations);
+  console.log(combinations); //shows combinations in console
 
-
+  //uses math random to take all inputs and create the final password
   for (var i = 0; i < options.length; i++) {
-    password += combinations[Math.floor(Math.random() * combinations.length)];
+    finalPassword += combinations[Math.floor(Math.random() * combinations.length)];
     
   }
-  console.log(finalPassword);
+  console.log(finalPassword); //shows final password in console
 
-  return password;
-};
+
+    for (var i = 0; i < options.length; i++) {
+        finalPassword += combinations[Math.floor(Math.random() * combinations.length)];
+    
+    }
+    console.log(finalPassword);
+
+  return finalPassword;
+}
+
+//writes password 
+function writePassword() {
+  var password = genPassword();
+  var passwordText = document.querySelector("#password");
+
+  passwordText.value = password;
+}
+
+//add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
