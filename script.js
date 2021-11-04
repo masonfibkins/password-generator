@@ -41,6 +41,7 @@ function userInput()  {
 };
 
 //function to take inputs and generate the password
+//WHEN all prompts are answered THEN a password is generated that matches the selected criteria
 function genPassword() {
   var options = userInput();
   var combinations = [];
