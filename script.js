@@ -16,10 +16,10 @@ function userInput()  {
   do{
   var length = prompt("Choose from 8 to 128");
   //WHEN asked for character types to include in the password
-  var lowerInput = confirm("Include lowercase?"); //lowercase, uppercase, numeric, and/or special characters
-  var upperInput = confirm("Include uppercase?");
-  var numbersInput = confirm("Include numbers?");
-  var char = confirm("Include special characters?");
+  var lowerInput = confirm("Include lowercase?"); //lowercase
+  var upperInput = confirm("Include uppercase?"); //uppercase
+  var numbersInput = confirm("Include numbers?"); //numeric
+  var char = confirm("Include special characters?"); //and/or special characters
 
   //store user input
   var input = {
